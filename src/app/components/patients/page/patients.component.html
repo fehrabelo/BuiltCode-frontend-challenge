@@ -1,0 +1,7 @@
+<div class="doctors-container">
+    <div *ngFor="let pat of patientsData" class="group">
+        <p><b>Nome :</b>{{pat.name}}</p>
+        <p><b>cpf :</b> {{pat.cpf}}</p>
+        <p><b>data de nascimento: </b>{{pat.birthDate}} | date : dd/mm/yyyy</p>
+    </div>
+</div>

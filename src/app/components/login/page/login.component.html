@@ -1,0 +1,17 @@
+<form [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm)">
+    <div class="login">
+        <h1>Login</h1>
+        <div class="inputs">
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="email" required email formControlName="email">
+        </div>
+        <div class="inputs">
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="senha" required password minlength="6" formControlName="password">
+        </div>
+    </div>
+    <div class="bottom">
+        <!-- (click)="userLogin(loginForm)" -->
+        <button type="submit" class="btn-home-primary btn-blue">Continuar</button>
+    </div>
+</form>
