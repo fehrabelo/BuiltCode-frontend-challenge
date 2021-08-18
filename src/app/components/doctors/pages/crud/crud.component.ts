@@ -14,7 +14,7 @@ export class CrudComponent implements OnInit {
   subs: Subscription[] = [];
   docForm: FormGroup;
   data: any;
-
+  formExihibit: boolean;
   constructor(private docService: DoctorsService,
     private FormBuilder: FormBuilder,
     private router: Router) { }
@@ -22,6 +22,7 @@ export class CrudComponent implements OnInit {
   ngOnInit(): void {
 
     if (localStorage.getItem('docInfo') != null) {
+      this.formExihibit = true;
       this.data = localStorage.getItem('docInfo')
       this.data = JSON.parse(this.data);
       this.docForm = this.FormBuilder.group({
@@ -30,6 +31,7 @@ export class CrudComponent implements OnInit {
         crmUf: [this.data.crmUf, Validators.required],
       })
     } else {
+      this.formExihibit = false;
       this.docForm = this.FormBuilder.group({
         name: ['', Validators.required],
         crm: ['', Validators.required],
