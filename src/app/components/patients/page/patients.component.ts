@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PatientsService } from '../service/patients.service';
 
@@ -9,9 +9,9 @@ import { PatientsService } from '../service/patients.service';
 })
 export class PatientsComponent implements OnInit, OnDestroy {
   patientsData: any;
-
+  @Input() doctorsFilter: any;
   subs: Subscription[] = [];
-
+  docFilter: any;
   //pagination
   pageIndex: number = 1;
   pageSize: number = 10;
@@ -30,8 +30,9 @@ export class PatientsComponent implements OnInit, OnDestroy {
           this.patientsData = response.data.itens
           console.log(this.patientsData);
 
-          // used to pass data to service
-          // this.docService.doctorsData = this.docInfos
+          this.docFilter = localStorage.getItem('docData')
+          console.log(JSON.parse(this.docFilter)
+          );
         })
     )
   }

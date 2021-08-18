@@ -7,26 +7,17 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 
 //components
-import { DoctorsComponent } from './components/doctors/page/doctors.component';
 import { DoctorsService } from './components/doctors/service/doctors.service';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
-
-// angular material 
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DoctorsComponent } from './components/doctors/pages/list/doctors.component';
 import { PatientsComponent } from './components/patients/page/patients.component';
-
+import { CrudComponent } from './components/doctors/pages/crud/crud.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchBarComponent,
     DoctorsComponent,
     PatientsComponent,
+    CrudComponent
   ],
   imports: [
     BrowserModule,
@@ -34,13 +25,7 @@ import { PatientsComponent } from './components/patients/page/patients.component
     LoginModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatIconModule, MatInputModule,
-    MatAutocompleteModule,
-    MatChipsModule,
-    MatFormFieldModule
-
   ],
   providers: [DoctorsService],
   bootstrap: [AppComponent]

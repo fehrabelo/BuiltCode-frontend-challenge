@@ -1,0 +1,23 @@
+<form [formGroup]="docForm">
+    <!-- (ngSubmit)="createDoctor(docForm)" -->
+    <div class="login">
+        <h1>Adicionar doutô</h1>
+        <div class="inputs">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
+        </div>
+        <div class="inputs">
+            <label for="crm">Crm</label>
+            <input type="crm" id="crm" placeholder="Insira o crm" required crm formControlName="crm">
+        </div>
+        <div class="inputs">
+            <label for="crmUf">CrmUf</label> <input type="crmUf" id="crmUf" placeholder="Insira o crmUf" required crmUf maxlength="2" formControlName="crmUf">
+        </div>
+    </div>
+    <div class="bottom">
+        <button type="submit" class="btn-home-primary btn-blue">Adicionar</button>
+    </div>
+    <div class="bottom">
+        <button (click)="updateDoctor(docForm)" type="submit" class="btn-home-primary btn-blue">Adicionar</button>
+    </div>
+</form>

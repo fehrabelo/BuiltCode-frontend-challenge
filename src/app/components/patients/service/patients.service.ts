@@ -8,6 +8,7 @@ import { dataApi } from 'src/environments/environment';
 })
 export class PatientsService {
   searchOption: any = []
+  public patientsInfo: [];
 
   constructor(private http: HttpClient) { }
 
@@ -18,6 +19,26 @@ export class PatientsService {
       'Authorization': 'Bearer ' + data
     }
     return this.http.get<any>(`${dataApi.siteUrl}/v1/mobile/patients?PageIndex=${pageIndex}&PageSize=${pageSize}`, { headers: headers })
+  }
+
+
+  // method to filter logic in the Input
+  filteredListOptions() {
+    let posts: any = this.patientsInfo;
+    console.log(posts);
+
+    let filteredPostsList: any = [];
+    console.log(filteredPostsList);
+
+    for (let post of posts) {
+      for (let options of this.searchOption) {
+        if (options.name === post.name) {
+          filteredPostsList.push(post);
+        }
+      }
+    }
+    console.log(filteredPostsList);
+    return filteredPostsList;
   }
 
 }

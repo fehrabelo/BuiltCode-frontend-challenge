@@ -13,14 +13,35 @@ export class DoctorsService {
   constructor(private http: HttpClient) { }
 
   getDoctors(pageIndex: number, pageSize: number): Observable<any> {
-    const data = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const headers = {
       'accept': 'application/json',
-      'Authorization': 'Bearer ' + data
+      'Authorization': 'Bearer ' + token
     }
     // return this.http.get<any>(dataApi.siteUrl + "/v1/mobile/doctors?Name=Felipe%20&PageIndex=1&PageSize=10&SortField=a&SortType=a")
     // return this.http.get<any>(`${dataApi.siteUrl}/v1/mobile/doctors?Name=${name} &PageIndex=${pageIndex}&PageSize=${pageSize}&SortField=${sortField}&SortType=${sortType}`
     return this.http.get<any>(`${dataApi.siteUrl}/v1/mobile/doctors?PageIndex=${pageIndex}&PageSize=${pageSize}`, { headers: headers })
+  }
+
+
+  createDoctor(data: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'accept': 'application/json',
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json-patch+json'
+    }
+    return this.http.post<any>(`${dataApi.siteUrl}/v1/mobile/doctors/create`, data, { headers: headers })
+  }
+
+  updateDoctorInfo(doctorId: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'accept': 'application/json',
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json-patch+json'
+    }
+    return this.http.post<any>(`${dataApi.siteUrl}/v1/mobile/doctors/update`, doctorId, { headers: headers })
   }
 
   // method to filter logic in the Input
