@@ -1,0 +1,33 @@
+<div class="doctors">
+    <h2 style="text-align:center">Pacientes</h2>
+    <div>
+        <button type="button" class="btn btn-outline-primary" routerLink="/doutores">
+            Ver doutores
+        </button>
+        <button class="btn btn-primary" routerLink="/adicionar-paciente">
+            Adicionar paciente
+            <img class="icon" src="assets/icons/add.svg">
+        </button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="table-cell">NOME</th>
+                <th class="table-cell">CPF</th>
+                <th class="table-cell">DATA DE NASCIMENTO</th>
+                <th class="table-cell">AÇÕES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="doctors-body-table" *ngFor="let pat of patientsData">
+                <td class="table-cell">{{pat.name}}</td>
+                <td class="table-cell">{{pat.cpf | mask: '000.000.000-00'}}</td>
+                <td class="table-cell">{{pat.birthDate | date: 'dd/MM/YYYY'}}</td>
+                <div class="actions">
+                    <img (click)="editPatient(pat)" class="icon" src="assets/icons/edit.svg">
+                    <img class="icon" src="assets/icons/bin.svg">
+                </div>
+            </tr>
+        </tbody>
+    </table>
+</div>

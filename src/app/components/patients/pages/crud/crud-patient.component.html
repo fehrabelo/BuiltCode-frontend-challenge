@@ -1,0 +1,41 @@
+<form *ngIf="formExihibit == true" [formGroup]="patientForm" (ngSubmit)="updatePatient(patientForm)">
+    <div class="login">
+        <h1>Alterar dados de paciente</h1>
+        <div class="inputs">
+            <label for="name">Nome Completo:</label>
+            <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
+        </div>
+        <div class="inputs">
+            <label for="birthDate">Data de nascimento:</label>
+            <input type="date" id="birthDate" placeholder="Digite sua data de nascimento" required crm formControlName="birthDate">
+        </div>
+        <div class="inputs">
+            <label for="cpf">CPF:</label>
+            <input type="cpf" id="cpf" mask="000.000.000-00" placeholder="Digite o seu cpf" required cpf formControlName="cpf">
+        </div>
+    </div>
+    <div class="bottom">
+        <button type="submit" class="btn-home-primary btn-blue">Editar</button>
+    </div>
+</form>
+
+<form *ngIf="formExihibit == false" [formGroup]="patientForm" (ngSubmit)="createPatient(patientForm)">
+    <div class="login">
+        <h1>Adicionar paciente</h1>
+        <div class="inputs">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
+        </div>
+        <div class="inputs">
+            <label for="birthDate">Data de nascimento:</label>
+            <input id="birthDate" mask="00/00/0000" placeholder="Digite sua data de nascimento" required crm formControlName="birthDate">
+        </div>
+        <div class="inputs">
+            <label for="cpf">CPF:</label>
+            <input type="cpf" id="cpf" mask="000.000.000-00" placeholder="Digite o seu cpf" required cpf formControlName="cpf">
+        </div>
+    </div>
+    <div class="bottom">
+        <button type="submit" class="btn-home-primary btn-blue">Adicionar</button>
+    </div>
+</form>

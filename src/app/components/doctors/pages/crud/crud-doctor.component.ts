@@ -5,15 +5,15 @@ import { Subscription } from 'rxjs';
 import { DoctorsService } from '../../service/doctors.service';
 
 @Component({
-  selector: 'app-crud',
-  templateUrl: './crud.component.html',
-  styleUrls: ['./crud.component.scss']
+  selector: 'app-crud-doctor',
+  templateUrl: './crud-doctor.component.html',
+  styleUrls: ['./crud-doctor.component.scss']
 })
-export class CrudComponent implements OnInit {
+export class CrudDoctorComponent implements OnInit {
 
   subs: Subscription[] = [];
   docForm: FormGroup;
-  data: any;
+  docData: any;
   formExihibit: boolean;
   constructor(private docService: DoctorsService,
     private FormBuilder: FormBuilder,
@@ -23,13 +23,14 @@ export class CrudComponent implements OnInit {
 
     if (localStorage.getItem('docInfo') != null) {
       this.formExihibit = true;
-      this.data = localStorage.getItem('docInfo')
-      this.data = JSON.parse(this.data);
+      this.docData = localStorage.getItem('docInfo');
+      this.docData = JSON.parse(this.docData);
       this.docForm = this.FormBuilder.group({
-        name: [this.data.name, Validators.required],
-        crm: [this.data.crm, Validators.required],
-        crmUf: [this.data.crmUf, Validators.required],
+        name: [this.docData.name, Validators.required],
+        crm: [this.docData.crm, Validators.required],
+        crmUf: [this.docData.crmUf, Validators.required],
       })
+      localStorage.removeItem('docInfo');
     } else {
       this.formExihibit = false;
       this.docForm = this.FormBuilder.group({
@@ -45,17 +46,24 @@ export class CrudComponent implements OnInit {
       this.docService.createDoctor(JSON.stringify(createDocForm.value))
         .subscribe(response => {
           console.log(response);
+          if (response.success == true) {
+            this.router.navigate([`/doutores`]);
+          }
         })
     )
   }
 
   updateDoctor(updateDocForm: any) {
     this.subs.push(
-      this.docService.updateDoctorInfo(JSON.stringify(updateDocForm.value))
+      this.docService.updateDoctorInfo(this.docData.id, JSON.stringify(updateDocForm.value))
         .subscribe(response => {
           console.log(response);
+          if (response.success == true) {
+            this.router.navigate([`/doutores`]);
+          }
         })
     )
+
   }
 
   ngOnDestroy(): void {

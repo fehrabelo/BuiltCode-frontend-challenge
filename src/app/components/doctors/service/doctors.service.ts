@@ -34,14 +34,14 @@ export class DoctorsService {
     return this.http.post<any>(`${dataApi.siteUrl}/v1/mobile/doctors/create`, data, { headers: headers })
   }
 
-  updateDoctorInfo(doctorId: any): Observable<any> {
+  updateDoctorInfo(doctorId: any, data: any): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = {
       'accept': 'application/json',
       'Authorization': 'Bearer ' + token,
       'Content-Type': 'application/json-patch+json'
     }
-    return this.http.post<any>(`${dataApi.siteUrl}/v1/mobile/doctors/update`, doctorId, { headers: headers })
+    return this.http.put<any>(`${dataApi.siteUrl}/v1/mobile/doctors/update/` + doctorId, data, { headers: headers })
   }
 
   // method to filter logic in the Input

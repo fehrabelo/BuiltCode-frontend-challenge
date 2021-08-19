@@ -21,6 +21,26 @@ export class PatientsService {
     return this.http.get<any>(`${dataApi.siteUrl}/v1/mobile/patients?PageIndex=${pageIndex}&PageSize=${pageSize}`, { headers: headers })
   }
 
+  createPatient(data: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'accept': 'application/json',
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json-patch+json'
+    }
+    return this.http.post<any>(`${dataApi.siteUrl}/v1/mobile/patients/create`, data, { headers: headers })
+  }
+
+  updatePatientInfo(patientId: any, data: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'accept': 'application/json',
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json-patch+json'
+    }
+    return this.http.put<any>(`${dataApi.siteUrl}/v1/mobile/patients/update/` + patientId, data, { headers: headers })
+  }
+
 
   // method to filter logic in the Input
   filteredListOptions() {

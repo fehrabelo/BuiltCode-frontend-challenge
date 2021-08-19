@@ -1,0 +1,35 @@
+.doctors {
+    margin: 4%;
+}
+
+table {
+    width: 85%;
+    font-size: 1.2em;
+    margin: 0 auto;
+}
+
+tbody {
+    text-align: center;
+}
+
+tbody {
+    text-align: left;
+}
+
+th {
+    width: 40%;
+}
+
+.icon {
+    width: 30px;
+    cursor: pointer;
+}
+
+.doctors-body-table {
+    padding: 1rem;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}

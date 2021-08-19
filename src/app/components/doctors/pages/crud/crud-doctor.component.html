@@ -1,16 +1,16 @@
-<form *ngIf="formExihibit == true" [formGroup]="docForm" (ngSubmit)="createDoctor(docForm)">
+<form *ngIf="formExihibit == true" [formGroup]="docForm" (ngSubmit)="updateDoctor(docForm)">
     <div class="login">
         <h1>Editar doutor</h1>
         <div class="inputs">
-            <label for="name">Nome Completo</label>
+            <label for="name">Nome Completo:</label>
             <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
         </div>
         <div class="inputs">
-            <label for="crm">Crm</label>
+            <label for="crm">Crm:</label>
             <input type="crm" id="crm" placeholder="Insira o crm" required crm formControlName="crm">
         </div>
         <div class="inputs">
-            <label for="crmUf">CrmUf</label> <input type="crmUf" id="crmUf" placeholder="Insira o crmUf" required crmUf maxlength="2" formControlName="crmUf">
+            <label for="crmUf">CrmUf:</label> <input type="crmUf" id="crmUf" placeholder="Insira o crmUf" required crmUf maxlength="2" formControlName="crmUf">
         </div>
     </div>
     <div class="bottom">
