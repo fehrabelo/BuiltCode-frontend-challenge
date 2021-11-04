@@ -1,0 +1,42 @@
+.doctors {
+  margin: 4%;
+}
+
+table {
+  width: 85%;
+  font-size: 1.2em;
+  margin: 0 auto;
+}
+
+
+th {
+  width: 40%;
+}
+
+.icon {
+  width: 30px;
+  cursor: pointer;
+}
+
+.doctors-body-table {
+  padding: 1rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+
+  fa-icon {
+    cursor: pointer;
+  }
+}
+
+.buttons-top-align {
+  display: flex;
+  margin-bottom: 2rem;
+  justify-content: end;
+}
+
+.route-patients {
+  padding-right: 1rem;
+}

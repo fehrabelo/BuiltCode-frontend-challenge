@@ -41,6 +41,15 @@ export class PatientsService {
     return this.http.put<any>(`${dataApi.siteUrl}/v1/mobile/patients/update/` + patientId, data, { headers: headers })
   }
 
+  deletePatient(patientId: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'accept': 'application/json',
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json-patch+json'
+    }
+    return this.http.delete<any>(`${dataApi.siteUrl}/v1/mobile/patients/delete/` + patientId, { headers: headers })
+  }
 
   // method to filter logic in the Input
   filteredListOptions() {

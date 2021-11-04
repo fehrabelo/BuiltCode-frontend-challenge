@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { DoctorsService } from '../../service/doctors.service';
+import { DoctorsService } from '../service/doctors.service';
 
 @Component({
   selector: 'app-crud-doctor',
@@ -15,9 +16,12 @@ export class CrudDoctorComponent implements OnInit {
   docForm: FormGroup;
   docData: any;
   formExihibit: boolean;
-  constructor(private docService: DoctorsService,
+  constructor(
+    private docService: DoctorsService,
     private FormBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
 
@@ -42,11 +46,13 @@ export class CrudDoctorComponent implements OnInit {
   }
 
   createDoctor(createDocForm: any) {
+    console.log(createDocForm.value);
     this.subs.push(
       this.docService.createDoctor(JSON.stringify(createDocForm.value))
         .subscribe(response => {
           console.log(response);
           if (response.success == true) {
+            this.toastr.success('adicionado com sucesso!', createDocForm.value.name);
             this.router.navigate([`/doutores`]);
           }
         })
@@ -54,11 +60,13 @@ export class CrudDoctorComponent implements OnInit {
   }
 
   updateDoctor(updateDocForm: any) {
+    console.log(updateDocForm.value);
     this.subs.push(
       this.docService.updateDoctorInfo(this.docData.id, JSON.stringify(updateDocForm.value))
         .subscribe(response => {
           console.log(response);
           if (response.success == true) {
+            this.toastr.warning('atualizado com sucesso!', updateDocForm.value.name);
             this.router.navigate([`/doutores`]);
           }
         })

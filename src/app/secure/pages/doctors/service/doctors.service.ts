@@ -18,8 +18,6 @@ export class DoctorsService {
       'accept': 'application/json',
       'Authorization': 'Bearer ' + token
     }
-    // return this.http.get<any>(dataApi.siteUrl + "/v1/mobile/doctors?Name=Felipe%20&PageIndex=1&PageSize=10&SortField=a&SortType=a")
-    // return this.http.get<any>(`${dataApi.siteUrl}/v1/mobile/doctors?Name=${name} &PageIndex=${pageIndex}&PageSize=${pageSize}&SortField=${sortField}&SortType=${sortType}`
     return this.http.get<any>(`${dataApi.siteUrl}/v1/mobile/doctors?PageIndex=${pageIndex}&PageSize=${pageSize}`, { headers: headers })
   }
 
@@ -42,6 +40,16 @@ export class DoctorsService {
       'Content-Type': 'application/json-patch+json'
     }
     return this.http.put<any>(`${dataApi.siteUrl}/v1/mobile/doctors/update/` + doctorId, data, { headers: headers })
+  }
+
+  deleteDoctor(doctorId: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'accept': 'application/json',
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json-patch+json'
+    }
+    return this.http.delete<any>(`${dataApi.siteUrl}/v1/mobile/doctors/delete/` + doctorId, { headers: headers })
   }
 
   // method to filter logic in the Input

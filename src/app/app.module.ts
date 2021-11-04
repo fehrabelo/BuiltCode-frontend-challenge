@@ -4,43 +4,35 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginModule } from './components/login/login.module';
-
-
-//components
-import { DoctorsService } from './components/doctors/service/doctors.service';
-import { DoctorsComponent } from './components/doctors/pages/list-doctors/doctors.component';
-import { PatientsComponent } from './components/patients/pages/list-patients/patients.component';
-import { CrudDoctorComponent } from './components/doctors/pages/crud/crud-doctor.component';
-import { CrudPatientComponent } from './components/patients/pages/crud/crud-patient.component';
 
 //libs
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { PublicModule } from './public/public.module';
+import { SecureModule } from './secure/secure.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToastrModule } from 'ngx-toastr';
+const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
-const maskConfig: Partial<IConfig> = {
-  validation: false,
-};
 
 @NgModule({
   declarations: [
     AppComponent,
-    DoctorsComponent,
-    PatientsComponent,
-    CrudDoctorComponent,
-    CrudPatientComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(maskConfig),
-
+    NgxMaskModule.forRoot(),
+    PublicModule,
+    SecureModule,
+    FontAwesomeModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   ],
-  providers: [DoctorsService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

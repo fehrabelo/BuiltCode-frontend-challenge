@@ -1,0 +1,55 @@
+<div class="doctors">
+  <h2 style="text-align:center">Médicos</h2>
+  <div class="buttons-top-align">
+    <div class="route-patients">
+      <button type="button" class="btn btn-outline-primary" routerLink="/pacientes">
+        Ver pacientes
+      </button>
+    </div>
+    <div class="add-doctor">
+      <button class="btn btn-outline-primary" routerLink="/adicionar-doutor">
+        Adicionar Doutor
+        <fa-icon [icon]="faPlus"></fa-icon>
+      </button>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th class="table-cell">NOME</th>
+        <th class="table-cell">CRM</th>
+        <th class="table-cell">CRMUF</th>
+        <th class="table-cell">AÇÕES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="doctors-body-table" *ngFor="let doc of docInfos">
+        <td class="table-cell">{{doc.name}}</td>
+        <td class="table-cell">{{doc.crm}}</td>
+        <td class="table-cell">{{doc.crmUf}}</td>
+        <div class="actions">
+          <fa-icon (click)="editDoc(doc)" [icon]="faEdit"></fa-icon>
+          <fa-icon (click)="deleteDoctor(doc)" [icon]="faTrashAlt"></fa-icon>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <ngb-pagination [collectionSize]="showcaseMax" [pageSize]="pageSize" [(page)]="pageIndex" [maxSize]="7" [rotate]="true" (pageChange)="pageChange($event)"></ngb-pagination> -->
+</div>
+<!-- <div>
+        <div *ngFor="let doc of docInfos" class="group">
+            <div>
+                <p><b>Nome:</b>{{doc.name}}</p>
+                <p><b>Crm:</b> {{doc.crm}}</p>
+                <p><b>CrmUf: </b>{{doc.crmUf}}</p>
+            </div>
+            <div>
+                <div class="col-auto pl-0 text-blue remove-status">
+                    <img (click)="editDoc(doc)" class="icon" src="assets/icons/edit.svg">
+                    <img class="icon" src="assets/icons/bin.svg">
+                </div>
+                <div class="col-auto pl-0 text-blue remove-status">
+                </div>
+            </div>
+        </div>
+    </div> -->

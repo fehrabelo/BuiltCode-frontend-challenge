@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { DoctorsService } from '../../service/doctors.service';
+import { DoctorsService } from '../service/doctors.service';
 
 @Component({
   selector: 'app-doctors',
@@ -9,6 +12,11 @@ import { DoctorsService } from '../../service/doctors.service';
   styleUrls: ['./doctors.component.scss']
 })
 export class DoctorsComponent implements OnInit, OnDestroy {
+
+  // icon
+  faPlus = faPlus;
+  faEdit = faEdit;
+  faTrashAlt = faTrashAlt;
 
   pageIndex: number = 1;
   pageSize: number = 15;
@@ -19,7 +27,9 @@ export class DoctorsComponent implements OnInit, OnDestroy {
 
   constructor(
     private docService: DoctorsService,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.getDoctors();
@@ -45,6 +55,17 @@ export class DoctorsComponent implements OnInit, OnDestroy {
     this.router.navigate([`/editar-doutor`]);
     // this.router.navigate([`/editar-doutor/${docInfo.id}`]);
     localStorage.setItem('docInfo', JSON.stringify(docInfo))
+  }
+
+  deleteDoctor(docInfo: any) {
+    this.subs.push(
+      this.docService.deleteDoctor(docInfo.id)
+        .subscribe(response => {
+          if (response.success == true) {
+            this.toastr.error('excluido com sucesso!', docInfo.name);
+          }
+        })
+    )
   }
 
   pageChange(event: any) {

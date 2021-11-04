@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { PatientsService } from '../../service/patients.service';
+import { DoctorsService } from '../../doctors/service/doctors.service';
+import { PatientsService } from '../service/patients.service';
 
 @Component({
   selector: 'app-crud-patient',
@@ -10,16 +12,29 @@ import { PatientsService } from '../../service/patients.service';
   styleUrls: ['./crud-patient.component.scss']
 })
 export class CrudPatientComponent implements OnInit, OnDestroy {
-  formExihibit: boolean;
+
   subs: Subscription[] = [];
+
+  // data manipulation
   patientForm: FormGroup;
   patientData: any;
+  formExihibit: boolean;
+  doctorsList: any;
 
-  constructor(private patstService: PatientsService,
+  //pagination
+  pageIndex: number = 1;
+  pageSize: number = 15;
+
+  constructor(
+    private patstService: PatientsService,
+    private docService: DoctorsService,
     private FormBuilder: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
+    this.getDoctor();
 
     if (localStorage.getItem('patientInfo') != null) {
       this.formExihibit = true;
@@ -38,8 +53,18 @@ export class CrudPatientComponent implements OnInit, OnDestroy {
         name: ['', Validators.required],
         birthDate: ['', Validators.required],
         cpf: ['', Validators.required],
+        doctorId: ['', Validators.required],
       })
     }
+  }
+
+  getDoctor() {
+    this.subs.push(
+      this.docService.getDoctors(this.pageIndex, this.pageSize)
+        .subscribe(response => {
+          this.doctorsList = response.data.itens
+          console.log(response);
+        }))
   }
 
   createPatient(patientData: any) {
@@ -48,7 +73,10 @@ export class CrudPatientComponent implements OnInit, OnDestroy {
         .subscribe(response => {
           console.log(response);
           if (response.success == true) {
+            this.toastr.success('adicionado com sucesso!', patientData.value.name);
             this.router.navigate([`/doutores`]);
+          } else {
+            this.toastr.error('Dados inconsistentes');
           }
         })
     )
@@ -59,6 +87,12 @@ export class CrudPatientComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.patstService.updatePatientInfo(this.patientData.id, JSON.stringify(patientData.value))
         .subscribe(response => {
+          if (response.success == true) {
+            this.toastr.warning('atualizado com sucesso!', patientData.value.name);
+            this.router.navigate([`/pacientes`]);
+          } else {
+            this.toastr.error('Dados inconsistentes');
+          }
           console.log(response);
         })
     )

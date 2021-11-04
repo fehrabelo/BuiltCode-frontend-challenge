@@ -1,0 +1,53 @@
+<form *ngIf="formExihibit == true" [formGroup]="patientForm" (ngSubmit)="updatePatient(patientForm)">
+  <div class="login">
+    <h1>Alterar dados de paciente</h1>
+    <div class="inputs">
+      <label for="name">Nome Completo:</label>
+      <input type="text" id="name" placeholder="Insira o nome completo" formControlName="name" required nam>
+    </div>
+    <div class="inputs">
+      <label for="birthDate">Data de nascimento:</label>
+      <input type="date" id="birthDate" placeholder="Digite sua data de nascimento" formControlName="birthDate"
+        required>
+    </div>
+    <div class="inputs">
+      <label for="cpf">CPF:</label>
+      <input type="cpf" id="cpf" mask="000.000.000-00" placeholder="Digite o seu cpf" formControlName="cpf" required>
+    </div>
+  </div>
+  <div class="bottom">
+    <button type="submit" class="btn-home-primary btn-blue">Editar Paciente</button>
+  </div>
+</form>
+
+<form *ngIf="formExihibit !== true" [formGroup]="patientForm" (ngSubmit)="createPatient(patientForm)">
+  <div class="login">
+    <h1>Adicionar paciente</h1>
+    <div class="inputs">
+      <label for="name">Nome Completo</label>
+      <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
+    </div>
+    <div class="col-md-4">
+      <label for="birthDate" class="form-label">Data de nascimento:</label>
+      <input id="birthDate" type="date" placeholder="Digite sua data de nascimento" required birthDate
+        formControlName="birthDate">
+    </div>
+    <div class="col-md-4">
+      <label for="cpf" class="form-label">CPF:</label>
+      <input type="cpf" id="cpf" mask="000.000.000-00" placeholder="Digite o seu cpf" required cpf
+        formControlName="cpf">
+    </div>
+    <div class="col-md-4">
+      <label for="doctorId" class="form-label">Doutores:</label>
+      <select formControlName="doctorId" class="form-select" id="doctorId" required>
+        <option *ngFor="let doc of doctorsList" [value]="doc.id">{{doc?.name}}</option>
+      </select>
+      <div class="invalid-feedback">
+        Por favor selecione uma categoria.
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <button type="submit" class="btn-home-primary btn-blue">Adicionar Paciente</button>
+  </div>
+</form>
