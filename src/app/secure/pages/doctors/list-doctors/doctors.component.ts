@@ -41,11 +41,7 @@ export class DoctorsComponent implements OnInit, OnDestroy {
         .subscribe(response => {
           this.docInfos = response.data.itens
           console.log(this.docInfos);
-          this.showcaseMax = response.data.totalRecords
-
           this.docData = response.data
-          console.log(this.docData);
-
           localStorage.setItem('docData', JSON.stringify(this.docInfos))
         })
     )
@@ -53,7 +49,6 @@ export class DoctorsComponent implements OnInit, OnDestroy {
 
   editDoc(docInfo: any) {
     this.router.navigate([`/editar-doutor`]);
-    // this.router.navigate([`/editar-doutor/${docInfo.id}`]);
     localStorage.setItem('docInfo', JSON.stringify(docInfo))
   }
 
@@ -66,11 +61,6 @@ export class DoctorsComponent implements OnInit, OnDestroy {
           }
         })
     )
-  }
-
-  pageChange(event: any) {
-    this.pageIndex = event
-    this.getDoctors();
   }
 
   ngOnDestroy(): void {

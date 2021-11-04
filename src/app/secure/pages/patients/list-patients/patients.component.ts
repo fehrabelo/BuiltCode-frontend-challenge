@@ -50,7 +50,7 @@ export class PatientsComponent implements OnInit, OnDestroy {
   }
 
   editPatient(patInfo: any) {
-    this.router.navigate([`/editar-pacient`]);
+    this.router.navigate([`/editar-paciente`]);
     localStorage.setItem('patientInfo', JSON.stringify(patInfo))
   }
 
@@ -59,7 +59,7 @@ export class PatientsComponent implements OnInit, OnDestroy {
       this.patService.deletePatient(patInfo.id)
         .subscribe(response => {
           if (response.success == true) {
-            this.toastr.warning('Paciente excluido com sucesso!', patInfo.name);
+            this.toastr.error('excluido com sucesso!', patInfo.name);
           }
         })
     )
@@ -67,6 +67,5 @@ export class PatientsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subs.map((sub: Subscription) => sub.unsubscribe())
-
   }
 }

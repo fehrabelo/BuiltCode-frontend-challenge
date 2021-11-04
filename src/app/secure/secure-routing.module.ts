@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'adicionar-doutor', component: CrudDoctorComponent },
   { path: 'editar-doutor', component: CrudDoctorComponent },
   { path: 'adicionar-paciente', component: CrudPatientComponent },
-  { path: 'editar-pacient', component: CrudPatientComponent }
+  { path: 'editar-paciente', component: CrudPatientComponent }
 ];
 
 @NgModule({

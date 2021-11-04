@@ -1,39 +1,63 @@
-<form *ngIf="formExihibit == true" [formGroup]="docForm" (ngSubmit)="updateDoctor(docForm)">
-    <div class="login">
-        <h1>Editar doutor</h1>
-        <div class="inputs">
-            <label for="name">Nome Completo:</label>
-            <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
+<form class="default-form" *ngIf="formExihibit == true" [formGroup]="docForm" (ngSubmit)="updateDoctor(docForm)">
+  <div>
+    <span class="title">Editar doutor</span>
+  </div>
+  <div class="form-inputs-positioning">
+    <div class="default-page">
+      <div class="inputs">
+        <label for="name">Nome Completo:</label>
+        <div>
+          <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
         </div>
-        <div class="inputs">
-            <label for="crm">Crm:</label>
-            <input type="crm" id="crm" placeholder="Insira o crm" required crm formControlName="crm">
+      </div>
+      <div class="inputs">
+        <label for="crm">Crm:</label>
+        <div>
+          <input type="crm" id="crm" placeholder="Insira o crm" required crm formControlName="crm">
         </div>
-        <div class="inputs">
-            <label for="crmUf">CrmUf:</label> <input type="crmUf" id="crmUf" placeholder="Insira o crmUf" required crmUf maxlength="2" formControlName="crmUf">
+      </div>
+      <div class="inputs">
+        <label for="crmUf">CrmUf:</label>
+        <div>
+          <input type="crmUf" id="crmUf" placeholder="Insira o crmUf" required crmUf maxlength="2"
+            formControlName="crmUf">
         </div>
+      </div>
     </div>
-    <div class="bottom">
-        <button type="submit" class="btn-home-primary btn-blue">Editar</button>
-    </div>
+  </div>
+  <div class="bottom">
+    <button type="submit" class="default-button">Editar Doutor</button>
+  </div>
 </form>
 
-<form *ngIf="formExihibit == false" [formGroup]="docForm" (ngSubmit)="createDoctor(docForm)">
-    <div class="login">
-        <h1>Adicionar doutor</h1>
-        <div class="inputs">
-            <label for="name">Nome Completo</label>
-            <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
+<form class="default-form" *ngIf="formExihibit !== true" [formGroup]="docForm" (ngSubmit)="createDoctor(docForm)">
+  <div>
+    <span class="title">Adicionar doutor</span>
+  </div>
+  <div class="form-inputs-positioning">
+    <div class="default-page">
+      <div class="inputs">
+        <label for="name">Nome Completo</label>
+        <div>
+          <input type="text" id="name" placeholder="Insira o nome completo" required name formControlName="name">
         </div>
-        <div class="inputs">
-            <label for="crm">Crm</label>
-            <input type="crm" id="crm" placeholder="Insira o crm" required crm formControlName="crm">
+      </div>
+      <div class="inputs">
+        <label for="crm">Crm</label>
+        <div>
+          <input type="crm" id="crm" placeholder="Insira o crm" required crm formControlName="crm">
         </div>
-        <div class="inputs">
-            <label for="crmUf">CrmUf</label> <input type="crmUf" id="crmUf" placeholder="Insira o crmUf" required crmUf maxlength="2" formControlName="crmUf">
+      </div>
+      <div class="inputs">
+        <label for="crmUf">CrmUf</label>
+        <div>
+          <input type="crmUf" id="crmUf" placeholder="Insira o crmUf" required crmUf maxlength="2"
+            formControlName="crmUf">
         </div>
+      </div>
     </div>
-    <div class="bottom">
-        <button type="submit" class="btn-home-primary btn-blue">Adicionar</button>
-    </div>
+  </div>
+  <div class="bottom">
+    <button type="submit" class="default-button">Adicionar Doutor</button>
+  </div>
 </form>

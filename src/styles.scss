@@ -2,7 +2,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
 @import '~ngx-toastr/toastr';
 
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bootstrap/scss/bootstrap';
+
+// mixins styles   
+@import './app/styles/mixins';
+
 body {
   margin: 0;
   padding: 0;
 }
+
+// @import "~src/styles/mixins";

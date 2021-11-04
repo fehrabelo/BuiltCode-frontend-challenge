@@ -1,0 +1,48 @@
+.default-form {
+  margin: 0 auto;
+  padding-top: 5rem;
+}
+
+span.title {
+  display: flex;
+  font-weight: 600;
+  padding-bottom: 1rem;
+  font-size: 2.5em;
+  justify-content: center;
+}
+
+button.default-button {
+  width: 170px;
+  height: 40px;
+  border-radius: 11px;
+  background: #4646e1;
+  color: #ffff;
+  border: none;
+}
+
+.bottom {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+input,
+select {
+  width: 290px;
+  height: 35px;
+  outline: none;
+}
+
+label {
+  margin-top: 10px;
+}
+
+.default-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-inputs-positioning {
+  justify-content: center;
+  display: flex;
+}

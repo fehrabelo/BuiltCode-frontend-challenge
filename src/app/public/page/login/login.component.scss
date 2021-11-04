@@ -1,0 +1,37 @@
+// @import "~src/styles/mixins";
+
+.default-form {
+  margin: 0 auto;
+  padding-top: 5rem;
+}
+
+span.title {
+  font-size: 2em;
+  font-weight: 600;
+  padding-left: 6rem;
+}
+
+button.default-button {
+  width: 170px;
+  height: 40px;
+  border-radius: 11px;
+  background: #4646e1;
+  color: #ffff;
+  border: none;
+}
+
+.bottom {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 290px;
+  height: 35px;
+}
+
+.default-page {
+  display: flex;
+  justify-content: center;
+}

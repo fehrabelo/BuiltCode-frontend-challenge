@@ -1,17 +1,22 @@
-<form [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm)">
-  <div class="login">
-    <h1>Login</h1>
-    <div class="col-md-4">
-      <label for="email" class="form-label">Email</label>
-      <input type="text" id="email" placeholder="email" formControlName="email" required>
-    </div>
-    <div class="col-md-4">
-      <label for="password" class="form-label">Senha</label>
-      <input type="password" id="password" placeholder="senha" minlength="6" formControlName="password" required>
+<form class="default-form" [formGroup]="loginForm" (ngSubmit)="userLogin(loginForm)">
+  <div class="default-page">
+    <div class="login-wrapper">
+      <span class="title">Login</span>
+      <div class="e-mail-label">
+        <label for="email" class="form-label">Email:</label>
+        <div class="form-input">
+          <input type="text" id="email" placeholder="email" formControlName="email" required>
+        </div>
+      </div>
+      <div class="password-label">
+        <label for="password" class="form-label">Senha:</label>
+        <div class="form-input">
+          <input type="password" id="password" placeholder="senha" minlength="6" formControlName="password" required>
+        </div>
+      </div>
     </div>
   </div>
   <div class="bottom">
-    <!-- (click)="userLogin(loginForm)" -->
-    <button type="submit" class="btn-home-primary btn-blue">Continuar</button>
+    <button type="submit" class="default-button">Continuar</button>
   </div>
 </form>
